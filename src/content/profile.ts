@@ -4,6 +4,10 @@
  *
  * Content is drawn from Abhay_Resume_SDE.pdf. Numbers are real resume figures,
  * not invented precision.
+ *
+ * Voice: first person, plain words, contractions where they read naturally.
+ * No noun-stacked resume phrasing ("enhanced API maintainability"), because
+ * nobody talks that way and it reads as filler.
  */
 
 export const profile = {
@@ -23,12 +27,12 @@ export const profile = {
     headline: "Backend systems, built close to the metal.",
     // 19 words, within the skill's 20-word hero subtext cap.
     subtext:
-      "Computer Engineering at NIT Kurukshetra. Recently at Cisco, rebuilding Splunk SOAR connectors and automating the migration with LLMs.",
+      "Computer Engineering at NIT Kurukshetra. I spent last summer at Cisco rebuilding Splunk SOAR connectors and automating the migration.",
   },
 
   about: {
     headline: "Cracked engineer, permanently mid-build.",
-    body: "I learn systems by rebuilding them badly and then refusing to stop until they work. That is how a Redis server in C++ happened. It is also why my side projects outnumber my finished side projects.",
+    body: "I learn systems by rebuilding them badly and then refusing to stop until they work. That is how a Redis server in C++ happened.",
     // Short, specific, and all true. Generic dev humor would read as filler.
     quips: [
       {
@@ -37,10 +41,10 @@ export const profile = {
       },
       {
         k: "Summer at Cisco",
-        v: "Had an LLM migrate the connectors, then diffed every reply against two live SOAR servers. Trust, but verify.",
+        v: "Let an LLM migrate the connectors, then diffed every reply against two live SOAR servers. Trust, but verify.",
       },
-      { k: "Will explain unprompted", v: "Why RESP is a nice protocol" },
-      { k: "Weakness", v: "A README that says “coming soon”" },
+      { k: "Will explain unprompted", v: "Why RESP is a genuinely nice protocol" },
+      { k: "Weakness", v: "My side projects outnumber my finished side projects" },
     ],
   },
 
@@ -51,23 +55,23 @@ export const profile = {
     location: "Bengaluru, India",
     period: "June 2026 - July 2026",
     summary:
-      "Migrated SOAR platform app connectors off the legacy base-connector layer, then built the tooling that made the rest of the migration tractable.",
+      "I moved SOAR platform connectors off the legacy base-connector layer, then built the tooling that made the rest of the migration manageable.",
     highlights: [
       {
         title: "Rebuilt the GitHub app integration",
-        body: "Moved the core integration from legacy base-connectors onto the typed SOAR-SDK layer, cutting code complexity and making the API surface maintainable.",
+        body: "Moved it off the legacy base-connectors and onto the typed SOAR-SDK. A lot of complexity fell out of the code, and the API surface became something you can actually maintain.",
       },
       {
         title: "Modernized the Jira app architecture",
-        body: "Reworked the app against abstract SOAR-SDK interfaces, giving automated ticketing workflows end-to-end reliability and stability.",
+        body: "Reworked the app against the SDK's abstract interfaces, so the automated ticketing workflows run reliably from end to end.",
       },
       {
         title: "Built an LLM-driven conversion pipeline",
-        body: "Structured prompts plus markdown guardrails turned a hand-written migration into a repeatable one, accelerating conversion and cutting manual iteration.",
+        body: "Converting every connector by hand would have taken the whole summer. Structured prompts and markdown guardrails made the conversion repeatable and cut most of the manual back and forth.",
       },
       {
         title: "Verified it deterministically",
-        body: "Ran real-time side-by-side behavioral comparisons across two live SOAR instances, so migration accuracy was proven by execution rather than trusted to the model.",
+        body: "I did not want to take the model's word for it. Every migration ran side by side against two live SOAR instances, so accuracy came from execution rather than assumption.",
       },
     ],
   },
@@ -76,7 +80,7 @@ export const profile = {
     {
       name: "RediX",
       tagline: "A Redis server written from scratch in C++",
-      body: "An in-memory key-value store speaking the RESP protocol over raw TCP. Twenty-plus core commands across strings, lists and hashes, with mutex-guarded shared state and a multi-threaded server loop for concurrent clients. Append-only file persistence restores state on startup.",
+      body: "An in-memory key-value store that speaks the RESP protocol over raw TCP. Twenty-plus commands across strings, lists and hashes, with mutex-guarded state and a multi-threaded loop so clients can connect at the same time. It writes to an append-only file, so nothing is lost on restart.",
       stack: ["C++", "TCP Sockets", "Multi-threading", "STL"],
       href: "https://github.com/4bhayG/Redis-Cpp",
       hrefLabel: "Source",
@@ -90,7 +94,7 @@ export const profile = {
     {
       name: "Kotion",
       tagline: "Real-time collaborative notes, Notion-style",
-      body: "A full-stack workspace built on the Next.js App Router with nested document hierarchies, rich-text editing, trash recovery and authentication. Convex handles backend state, optimistic updates and live synchronization, so concurrent editing stays low-latency without hand-rolled state management.",
+      body: "A full-stack workspace on the Next.js App Router: documents nested inside documents, rich-text editing, a trash you can recover from, and real accounts behind it. Convex handles backend state and live sync, so two people editing at once stays fast without me hand-rolling any of it.",
       stack: ["Next.js", "Convex", "TypeScript", "Tailwind CSS"],
       href: "https://kotion-note-taking.vercel.app/",
       hrefLabel: "Live demo",
@@ -152,16 +156,16 @@ export const profile = {
     featured: {
       title: "Adobe India Hackathon finalist",
       metric: "Top 0.8%",
-      body: "Placed in the top 0.8% of more than 12,000 teams nationwide with an AI-integrated solution, reaching the final stage.",
+      body: "More than 12,000 teams entered nationwide. Ours built an AI-integrated solution and made it to the final stage.",
     },
     rest: [
       {
         title: "Event Coordinator, Managing and Directing Club",
-        body: "Co-led the annual cultural fest for over 10,000 participants, running logistics across campus-wide events.",
+        body: "Co-led the annual cultural fest for over 10,000 people and ran the logistics across campus-wide events.",
       },
       {
         title: "Volunteer Educator, Shiksha Community",
-        body: "Taught foundational mathematics and science to underprivileged students across 85+ hours.",
+        body: "Spent 85+ hours teaching foundational maths and science to underprivileged students.",
       },
     ],
   },
@@ -185,7 +189,7 @@ export const profile = {
 
   contact: {
     headline: "Open to backend and systems roles.",
-    body: "Internships, new-grad positions, or anything with hard problems behind it. The fastest way to reach me is email.",
+    body: "Internships, new-grad roles, or anything with a hard problem behind it. Email is the fastest way to reach me.",
   },
 } as const;
 
