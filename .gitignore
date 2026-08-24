@@ -47,3 +47,7 @@ next-env.d.ts
 /P-5.jpeg
 /Abhay_Resume_SDE*.pdf
 /Profile-Image.jpeg
+
+# vendored design skill files, kept local
+/taste-design/
+/web-design-rules/
