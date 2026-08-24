@@ -20,9 +20,16 @@ export function About() {
             <h2 className="max-w-[19ch] text-3xl font-semibold leading-[1.12] tracking-tight text-primary sm:text-4xl lg:text-[2.6rem]">
               {about.headline}
             </h2>
-            <p className="mt-6 max-w-[54ch] text-base leading-relaxed text-secondary">
-              {about.body}
-            </p>
+            <div className="mt-6 max-w-[56ch] space-y-4">
+              {about.body.map((para) => (
+                <p
+                  key={para.slice(0, 24)}
+                  className="text-base leading-relaxed text-secondary"
+                >
+                  {para}
+                </p>
+              ))}
+            </div>
           </Reveal>
 
           <Reveal variant="depth" delay={0.08}>

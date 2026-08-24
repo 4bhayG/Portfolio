@@ -32,7 +32,12 @@ export const profile = {
 
   about: {
     headline: "Cracked engineer, permanently mid-build.",
-    body: "I learn systems by rebuilding them badly and then refusing to stop until they work. That is how a Redis server in C++ happened.",
+    // Two paragraphs. The LeetCode split is real (341 medium, 37 hard), so the
+    // self-deprecating line is honest rather than a bit.
+    body: [
+      "I learn systems by rebuilding them badly, then refusing to stop until they work. That is how a Redis server in C++ happened. I wanted to see what actually goes on between GET and the value coming back, and reading about it was not enough.",
+      "The parts most people skip are the parts I like: protocol framing, what happens when two threads reach for the same key, why something is slower than it has any right to be. My LeetCode sits at 341 mediums and 37 hards, which is a fair map of where my comfort currently ends. And I am happy to let a model write the boring half, as long as I get to check its work against something real.",
+    ],
     // Short, specific, and all true. Generic dev humor would read as filler.
     quips: [
       {
