@@ -1,26 +1,164 @@
 @import "tailwindcss";
 
+/*
+  PAGE THEME LOCK: this site is dark-only by explicit brief ("dark, modern, developer-y").
+  Every section uses these tokens. No section inverts to a light background.
+
+  COLOR CONSISTENCY LOCK: one accent (deep rose) for the entire page.
+  Saturation held under 80% so it reads considered rather than neon.
+
+  SHAPE CONSISTENCY LOCK: one radius system, applied everywhere.
+    - surfaces / cards / buttons : 12px  (--radius)
+    - inputs                     :  8px  (--radius-input)
+    - avatars / dots only        : full
+*/
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: dark;
+
+  /* Surfaces: off-black, never pure #000 */
+  --surface: #0a0a0c;
+  --surface-raised: #101013;
+  --surface-overlay: #16161a;
+
+  /* Hairlines */
+  --line: #232328;
+  --line-strong: #32323a;
+
+  /* Text */
+  --text-primary: #ededef;
+  --text-secondary: #a2a2ad;
+  /* 5.22:1 on --surface, 5.01:1 on --surface-raised. The darker grey this
+     replaced sat at 3.99:1, under the WCAG AA floor for body-size text. */
+  --text-muted: #82828f;
+
+  /* Accent: deep rose, desaturated (HSL 348 58% 58%) */
+  --accent: #d4526b;
+  --accent-hover: #e06d83;
+  --accent-contrast: #1a0d11;
+  --accent-soft: rgb(212 82 107 / 0.12);
+  --accent-line: rgb(212 82 107 / 0.32);
+
+  --radius: 12px;
+  --radius-input: 8px;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
+  --color-surface-overlay: var(--surface-overlay);
+
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+
+  --color-primary: var(--text-primary);
+  --color-secondary: var(--text-secondary);
+  --color-muted: var(--text-muted);
+
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-contrast: var(--accent-contrast);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-line: var(--accent-line);
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --radius-card: var(--radius);
+  --radius-field: var(--radius-input);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--surface);
+  color: var(--text-primary);
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Focus visibility is a baseline, not a nicety. */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--accent-contrast);
+}
+
+/*
+  Falling stars behind the whole page. Transform and opacity only, so the whole
+  layer stays on the compositor and never triggers layout.
+*/
+.star {
+  position: absolute;
+  top: -4vh;
+  border-radius: 9999px;
+  background: var(--text-primary);
+  opacity: 0;
+  will-change: transform, opacity;
+  animation-name: star-fall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes star-fall {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0;
+  }
+  12% {
+    opacity: var(--star-o, 0.3);
+  }
+  88% {
+    opacity: var(--star-o, 0.3);
+  }
+  100% {
+    transform: translate3d(var(--star-drift, 0), 106vh, 0);
+    opacity: 0;
+  }
+}
+
+/*
+  MOTION_INTENSITY is 7, so reduced-motion support is mandatory (skill 6.B).
+  Motion components additionally branch on useReducedMotion(); this is the
+  CSS-level backstop for anything animated declaratively.
+*/
+/*
+  Mobile reading rhythm: sections settle into place one at a time as you
+  scroll. `proximity`, not `mandatory` - sections taller than the viewport
+  (Experience, Skills) must stay freely scrollable rather than fighting the
+  user. scroll-padding clears the 64px sticky nav.
+*/
+@media (max-width: 767px) {
+  html {
+    scroll-snap-type: y proximity;
+    scroll-padding-top: 4rem;
+  }
+
+  main > section {
+    scroll-snap-align: start;
+    scroll-snap-stop: normal;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* The star layer is decorative; remove it rather than freeze it mid-fall. */
+  .starfield {
+    display: none;
+  }
+
+  html {
+    scroll-snap-type: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

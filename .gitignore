@@ -39,3 +39,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# personal source material, kept local
+# The resume PDF carries a phone number, so it must never reach a public repo.
+# Site assets under /public are intentionally NOT ignored: the build needs them.
+/*.pdf
+/P-5.jpeg
+/Abhay_Resume_SDE*.pdf
+/Profile-Image.jpeg
